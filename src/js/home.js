@@ -1,9 +1,10 @@
-
-
+import config from './config';
+//Log in
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
   const logInButton = document.getElementById("submit");
-  const signUpLink = document.getElementById("signup");
+  const signUpLink = document.getElementById("signuplink");
+
 
   logInButton.addEventListener("click", ev => {
     ev.preventDefault();
@@ -11,7 +12,7 @@
     const usernameValue = usernameInput.value;
     const passwordValue = passwordInput.value;
 
-    //handel false inputs
+    //handle false inputs
     if (!usernameValue) {
       alert("Please enter a username");
       return;
@@ -19,14 +20,13 @@
       alert("Please enter a password");
       return;
     }
-    // Utveckla hantering av credentials
+    // further dev....
     sendCredentials(usernameValue, passwordValue);
 
   });
 
   async function sendCredentials(username, password) {
-    console.log("Fetching")
-    const apiUrl = "http://localhost:3000/api/users/loginUser"
+    const apiUrl = `http://${config.BASE_URL}:3000/api/users/loginUser`
 
     const postData = {
       username: username.toString().toLowerCase(),
@@ -47,13 +47,17 @@
         console.log('Network response was not ok ' + response.statusText);
         console.log(response)
       }
-
-      const data = await response.json();
+      
+      const data = await response.json();  
       console.log('Success:', data);
+      
+      
     } catch (error) {
       console.error('Error:', error);
     }
   }
+
+  
 
 
 
