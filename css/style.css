@@ -1,0 +1,71 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("../img/mesh-gradient1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+}
+
+img{
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"], input[type="password"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+input[type="submit"] {
+  margin-top: 15px;
+  padding: 10px;
+  border: 2px solid #01C38E;
+  background-color: #01c38E;
+  color: #1A1E29;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+input[type="submit"]:hover {
+  color: #01C38E;
+  border: 2px solid #01c38E;
+  background-color: #1A1E29;
+}
+
+.link {
+  margin-top: 15px;
+}
+
+.link a {
+  padding: 10px;
+  color: #01c38E;
+  text-decoration: none;
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
