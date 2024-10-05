@@ -1,78 +1,148 @@
 import config from './config.js';
- 
- //Create account
- const signUpButton = document.getElementById("signup")
- const newUsernameInput = document.getElementById("newusername")
- const newEmailInput = document.getElementById("newemail")
- const newPasswordInput = document.getElementById("newpassword")
- const newFirstNameInput = document.getElementById("newfirstname")
- const newLastNameInput = document.getElementById("newlastname")
- const newBirthdateInput = document.getElementById("newbirthdate")
+import { validateInput, sanitizeInput } from './assets.js';
 
- signUpButton.addEventListener("click", ev=> {
-    ev.preventDefault();
+//Create account
+const signUpButton = document.getElementById("signup")
+const newUsernameInput = document.getElementById("newusername")
+const newEmailInput = document.getElementById("newemail")
+const newPasswordInput = document.getElementById("newpassword")
+const newFirstNameInput = document.getElementById("newfirstname")
+const newLastNameInput = document.getElementById("newlastname")
+const newBirthdateInput = document.getElementById("newbirthdate")
 
-    const usernameValue = newUsernameInput.value;
-    const emailValue = newEmailInput.value;
-    const passwordValue = newPasswordInput.value;
-    const firstNameValue = newFirstNameInput.value;
-    const lastNameValue = newLastNameInput.value;
-    const birthdateValue = newBirthdateInput.value;
+//add disable while waiting
+signUpButton.addEventListener("click", ev => {
+  ev.preventDefault();
 
-    //handle false inputs
-    if (!usernameValue) {
-      alert("Please enter a username");
-      return;
-    }else if(!passwordValue){
-      alert("Please enter a password");
-      return;
-    }
-    
-    // further dev....
-    createAccount(
-      usernameValue,
-      emailValue,
-      passwordValue,
-      firstNameValue,
-      lastNameValue,
-      birthdateValue
-    );
+  const usernameValue = sanitizeInput(newUsernameInput.value);
+  const emailValue = sanitizeInput(newEmailInput.value);
+  const passwordValue = sanitizeInput(newPasswordInput.value);
+  const firstNameValue = sanitizeInput(newFirstNameInput.value);
+  const lastNameValue = sanitizeInput(newLastNameInput.value);
+  const birthdateValue = sanitizeInput(newBirthdateInput.value);
 
-    console.log("Click")
-  });
+  // further dev....
+  createAccount(
+    usernameValue,
+    emailValue,
+    passwordValue,
+    firstNameValue,
+    lastNameValue,
+    birthdateValue
+  );
 
-  async function createAccount(username,email,password,firstName,lastName,birthdate) {
-    const apiUrl = `http://${config.BASE_URL}:3000/api/users/register/individual`;
+  console.log("Click")
+});
 
-    const postData = {
-      username: username.toString().toLowerCase(),
-      email: email.toString().toLowerCase(),
-      password: password.toString().toLowerCase(),
-      firstName: firstName.toString().toLowerCase(),
-      lastName: lastName.toString().toLowerCase(),
-      birthdate: birthdate.toString().toLowerCase(),
-    };
+async function createAccount(username, email, password, firstName, lastName, birthdate) {
 
-    console.log("Sending to server");
-    console.log(postData);
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(postData)
-      });
+  const apiUrl = `https://${config.BASE_URL}:3000/api/users/register/individual`;
 
-      if (!response.ok) {
-        console.log('Network response was not ok ' + response.statusText);
-        console.log(response)
-      }
-
-      const data = await response.json();
-      console.log('Success:', data);
-      
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  //Check inputs... Needs css for a more user friendly approach.
+  if (!username) {
+    newUsernameInput.classList.add("error");
+    alert("Please enter a username");
+    return;
+  } else if (!validateInput(username, "lettersAndNumbers")) {
+    newUsernameInput.classList.add("error");
+    alert("Username can only contain letters and numbers");
+    return;
+  } else{
+    newUsernameInput.classList.remove("error");
   }
+
+  if (!email) {
+    newEmailInput.classList.add("error");
+    alert("Please enter a email");
+    return;
+  } else if (!validateInput(email, "email")) {
+    newEmailInput.classList.add("error");
+    alert("Please type a valid email format");
+    return;
+  } else{
+    newEmailInput.classList.remove("error");
+  }
+
+  if (!password) {
+    newPasswordInput.classList.add("error");
+    alert("Please enter a password");
+    return;
+  } else if (password.length < 8) {
+    newPasswordInput.classList.add("error");
+    alert("Password must be at least 8 characters long.");
+    return;
+  } else{
+    newPasswordInput.classList.remove("error");
+  }
+
+  if (!firstName) {
+    newFirstNameInput.classList.add("error");
+    alert("Please enter a first name");
+    return;
+  } else if (!validateInput(firstName, "letters")) {
+    newFirstNameInput.classList.add("error");
+    alert("First name can only contain letters");
+    return;
+  } else{
+    newFirstNameInput.classList.remove("error");
+  }
+
+  if (!lastName) {
+    newLastNameInput.classList.add("error");
+    alert("Please enter a last name");
+    return;
+  } else if (!validateInput(lastName, "letters")) {
+    newLastNameInput.classList.add("error");
+    alert("Last name can only contain letters");
+    return;
+  } else{
+    newLastNameInput.classList.remove("error");
+  }
+
+  if (!validateInput(birthdate, "birthdate")) {
+    newBirthdateInput.classList.add("error");
+    alert("Please enter a valid birthdate (YYYY-MM-DD)");
+    return;
+  } else{
+    newBirthdateInput.classList.remove("error");
+  }
+  
+
+  const postData = {
+    username: username.toString().toLowerCase(),
+    email: email.toString().toLowerCase(),
+    password: password.toString().toLowerCase(),
+    firstName: firstName.toString().toLowerCase(),
+    lastName: lastName.toString().toLowerCase(),
+    birthdate: birthdate.toString().toLowerCase(),
+  };
+
+  console.log("Sending to server");
+  console.log(postData);
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    });
+
+    if (!response.ok) {
+      console.log('Network response was not ok ' + response.statusText);
+      console.log(response)
+    }
+
+    const data = await response.json();
+    console.log('Success:', data);
+
+  } catch (error) {
+
+    alert(`Error: ${error.message || 'Registration failed. Please try again.'}`);
+    return;
+  } finally {
+
+    console.log('Redirecting')
+    window.location.href = '../../index.html';
+  }
+};

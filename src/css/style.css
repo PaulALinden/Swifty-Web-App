@@ -37,7 +37,7 @@ form {
 input[type="text"], input[type="password"], input[type="email"], input[type="date"]{
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 4px;
   font-weight: bold;
 }
@@ -97,9 +97,15 @@ input[type="submit"]:hover {
 .anchorbutton:hover{
   border: 2px solid #01C38E;
   background-color: #1A1E29;
-
 }
 
-.anchorbutton a:hover{
+.anchorbutton:hover a{
   color: #01C38E;
+}
+
+input[type="text"].error,
+input[type="password"].error,
+input[type="email"].error,
+input[type="date"].error {
+    border: 2px solid red; /* Use !important if necessary */
 }
