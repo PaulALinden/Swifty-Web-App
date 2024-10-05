@@ -1,12 +1,12 @@
 import config from './config';
-import { validateInput, sanitizeInput } from './assets';
+import { validateInput, sanitizeInput, insertErrorMessage, removeErrorMessage } from './assets';
 
-const usernameInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
-const logInButton = document.getElementById("submit");
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const logInButton = document.getElementById('submit');
 
 //add disable while waiting
-logInButton.addEventListener("click", ev => {
+logInButton.addEventListener('click', ev => {
   ev.preventDefault();
 
   const usernameValue = sanitizeInput(usernameInput.value);
@@ -18,28 +18,30 @@ logInButton.addEventListener("click", ev => {
 
 async function sendCredentials(username, password) {
   //Check inputs... Needs css for a more user friendly approach.
-  if (!username.trim()) {
-    usernameInput.classList.add("error");
-    alert("Please enter a username");
+  if (!username) {
+    usernameInput.classList.add('error');
+    insertErrorMessage('Please enter a username.', 'username');
     return;
   } else if (!validateInput(username, 'lettersAndNumbers')) {
-    usernameInput.classList.add("error");
-    alert("Username can only contain letters and numbers");
+    usernameInput.classList.add('error');
+    insertErrorMessage('Username can only contain letters and numbers.', 'username');
     return;
   }else{
-    usernameInput.classList.remove("error");
+    usernameInput.classList.remove('error');
+    removeErrorMessage('username');
   }
 
-  if (!password.trim()) {
-    passwordInput.classList.add("error");
-    alert("Please enter a password");
+  if (!password) {
+    passwordInput.classList.add('error');
+    insertErrorMessage('Please enter a password.', 'password')
     return;
   } else if (password.length < 8) {
-    passwordInput.classList.add("error");
-    alert("Password must be at least 8 characters long.");
+    passwordInput.classList.add('error');
+    insertErrorMessage('Password must be at least 8 characters long.','password')
     return;
   }else{
-    usernameInput.classList.remove("error");
+    passwordInput.classList.remove('error');
+    removeErrorMessage('password');
   }
 
   const apiUrl = `http://${config.BASE_URL}:3000/api/users/loginUser`
@@ -50,7 +52,7 @@ async function sendCredentials(username, password) {
   };
 
   try {
-    console.log("Sending to server")
+    console.log('Sending to server')
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -72,8 +74,5 @@ async function sendCredentials(username, password) {
     console.error('Error:', error);
   }
 }
-
-
-
 
 

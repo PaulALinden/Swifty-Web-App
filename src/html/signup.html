@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Swifty</title>
@@ -25,30 +26,25 @@
 
   <div class="container">
 
-    <form action="#"  method="post">
-      <label>
-        <input type="text" id="newusername" name="username" placeholder="Username" required>
-      </label>
+    <form action="#" method="post">
 
-      <label>
-        <input type="email" id="newemail" name="email" placeholder="Email" required>
-      </label>
+      <input type="text" id="newusername" name="username" placeholder="Username" required>
+      <span class="error-message" id="error-newusername"></span>
 
-      <label>
-        <input type="password" id="newpassword" name="password" placeholder="Password" required>
-      </label>
+      <input type="email" id="newemail" name="email" placeholder="Email" required>
+      <span class="error-message" id="error-newemail"></span>
 
-      <label>
-        <input type="text" id="newfirstname" name="firstname" placeholder="Firstname" required>
-      </label>
+      <input type="password" id="newpassword" name="password" placeholder="Password" required>
+      <span class="error-message" id="error-newpassword"></span>
 
-      <label>
-        <input type="text" id="newlastname" name="lastname" placeholder="Lastname" required>
-      </label>
+      <input type="text" id="newfirstname" name="firstname" placeholder="Firstname" required>
+      <span class="error-message" id="error-newfirstname"></span>
 
-      <label>
-        <input type="date" id="newbirthdate" name="birthdate" placeholder="Birthdate" required>
-      </label>
+      <input type="text" id="newlastname" name="lastname" placeholder="Lastname" required>
+      <span class="error-message" id="error-newlastname"></span>
+
+      <input type="date" id="newbirthdate" name="birthdate" placeholder="Birthdate" required>
+      <span class="error-message" id="error-newbirthdate"></span>
 
       <input type="submit" id="signup" name="submit" value="Create new account">
     </form>

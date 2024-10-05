@@ -1,5 +1,5 @@
 import config from './config.js';
-import { validateInput, sanitizeInput } from './assets.js';
+import { validateInput, sanitizeInput, insertErrorMessage, removeErrorMessage} from './assets.js';
 
 //Create account
 const signUpButton = document.getElementById("signup")
@@ -41,70 +41,76 @@ async function createAccount(username, email, password, firstName, lastName, bir
   //Check inputs... Needs css for a more user friendly approach.
   if (!username) {
     newUsernameInput.classList.add("error");
-    alert("Please enter a username");
+    insertErrorMessage('Please enter a username','newusername');
     return;
   } else if (!validateInput(username, "lettersAndNumbers")) {
     newUsernameInput.classList.add("error");
-    alert("Username can only contain letters and numbers");
+    insertErrorMessage('Username can only contain letters and numbers','newusername');
     return;
   } else{
     newUsernameInput.classList.remove("error");
+    removeErrorMessage('newusername');
   }
 
   if (!email) {
     newEmailInput.classList.add("error");
-    alert("Please enter a email");
+    insertErrorMessage('Please enter a email.','newemail');
     return;
   } else if (!validateInput(email, "email")) {
     newEmailInput.classList.add("error");
-    alert("Please type a valid email format");
+    insertErrorMessage('Please type a valid email format.','newemail');
     return;
   } else{
     newEmailInput.classList.remove("error");
+    removeErrorMessage('newemail');
   }
 
   if (!password) {
     newPasswordInput.classList.add("error");
-    alert("Please enter a password");
+    insertErrorMessage('Please enter a password.','newpassword');
     return;
   } else if (password.length < 8) {
     newPasswordInput.classList.add("error");
-    alert("Password must be at least 8 characters long.");
+    insertErrorMessage('Password must be at least 8 characters long.','newpassword');
     return;
   } else{
     newPasswordInput.classList.remove("error");
+    removeErrorMessage('newpassword');
   }
 
   if (!firstName) {
     newFirstNameInput.classList.add("error");
-    alert("Please enter a first name");
+    insertErrorMessage('Please enter a first name.','newfirstname');
     return;
   } else if (!validateInput(firstName, "letters")) {
     newFirstNameInput.classList.add("error");
-    alert("First name can only contain letters");
+    insertErrorMessage('First name can only contain letters.','newfirstname');
     return;
   } else{
     newFirstNameInput.classList.remove("error");
+    removeErrorMessage('newfirstname');
   }
 
   if (!lastName) {
     newLastNameInput.classList.add("error");
-    alert("Please enter a last name");
+    insertErrorMessage('Please enter a last name.','newlastname');
     return;
   } else if (!validateInput(lastName, "letters")) {
     newLastNameInput.classList.add("error");
-    alert("Last name can only contain letters");
+    insertErrorMessage('Last name can only contain letters.','newlastname');
     return;
   } else{
     newLastNameInput.classList.remove("error");
+    removeErrorMessage('newlastname');
   }
 
   if (!validateInput(birthdate, "birthdate")) {
     newBirthdateInput.classList.add("error");
-    alert("Please enter a valid birthdate (YYYY-MM-DD)");
+    insertErrorMessage('Please enter a valid birthdate (YYYY-MM-DD).','newbirthdate');
     return;
   } else{
     newBirthdateInput.classList.remove("error");
+    removeErrorMessage('newbirthdate');
   }
   
 

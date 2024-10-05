@@ -18,6 +18,9 @@ body {
   border-radius: 8px;
   text-align: center;
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 img{
@@ -31,19 +34,21 @@ h1 {
 
 form {
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
 
 input[type="text"], input[type="password"], input[type="email"], input[type="date"]{
   padding: 10px;
-  margin: 10px 0;
+  margin-top: 10px;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-weight: bold;
 }
 
 input[type="date"]{
-  width: 62%;
+  color: #747474;
+  width: 80%;
 }
 
 input[type="submit"] {
@@ -55,6 +60,8 @@ input[type="submit"] {
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
+  font-size: smaller;
+  width: -moz-available;
 }
 
 input[type="submit"]:hover {
@@ -85,13 +92,14 @@ input[type="submit"]:hover {
   color: #1A1E29;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .anchorbutton a{
   padding: 10px;
   color: #1A1E29;
   text-decoration: none;
+  font-weight: bold;
+  font-size: smaller;
 }
 
 .anchorbutton:hover{
@@ -108,4 +116,11 @@ input[type="password"].error,
 input[type="email"].error,
 input[type="date"].error {
     border: 2px solid red; /* Use !important if necessary */
+}
+
+.error-message {
+  color: red;
+  font-size: 0.7em; 
+  margin-top: 1px;
+  height: 20px;
 }

@@ -3,6 +3,11 @@ import DOMPurify from 'dompurify';
 function validateInput(input, type) {
     let regex;
 
+    // Check for whitespace 
+    if (/\s/.test(input)) {
+        return false; 
+    }
+
     switch (type) {
         case 'letters':
             regex = /^[A-Za-z]+$/;
@@ -28,4 +33,14 @@ function sanitizeInput(input) {
     return DOMPurify.sanitize(input);
 }
 
-export {validateInput, sanitizeInput};
+function insertErrorMessage(message , type){
+    let errorField = document.getElementById(`error-${type}`);
+    errorField.textContent = message;
+  }
+  
+  function removeErrorMessage(type){
+    let errorField = document.getElementById(`error-${type}`);
+    errorField.textContent = ''
+  }
+
+export {validateInput, sanitizeInput, insertErrorMessage, removeErrorMessage};
