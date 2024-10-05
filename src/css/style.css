@@ -44,6 +44,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="dat
   border: 2px solid #ccc;
   border-radius: 4px;
   font-weight: bold;
+  width: 250px;
 }
 
 input[type="date"]{
@@ -61,7 +62,7 @@ input[type="submit"] {
   cursor: pointer;
   font-weight: bold;
   font-size: smaller;
-  width: -moz-available;
+  width: 200px;
 }
 
 input[type="submit"]:hover {
