@@ -29,20 +29,22 @@ nav {
 
 }
 
-#companylist {
-    margin-top: 140px;
-    min-height: 800px;
-    border-radius: 35px;
+#profilecontainer{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-
-    background-color: rgb(255, 255, 255);
+    margin-top: 50px;
 }
 
-.company {
-    border: 2px solid black;
-    height: 200px;
+.profilefield {
+    min-height: fit-content;
+    margin: 5px;
     width: 50%;
+    border-radius: 35px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+
+    background-color: rgb(255, 255, 255);
 }
