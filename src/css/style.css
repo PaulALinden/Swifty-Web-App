@@ -1,26 +1,33 @@
-/*
-Main styles of the app
-*/
+/*Main styles of the app*/
+
 body {
   font-family: Arial, sans-serif;
   background-image: url("../../img/mesh-gradient1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   margin: 0;
 }
 
-.container {
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  width: 300px;
+nav {
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100vw;
+  height: 50px;
+  background-color: #01C38E;
+
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
+}
+
+#navcontainer {
+  width: 240px;
+  display: flex;
+  justify-content: space-around;
+
 }
 
 img{

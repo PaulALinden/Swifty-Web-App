@@ -8,27 +8,6 @@ body {
     margin: 0;
 }
 
-nav {
-    position: sticky;
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100vw;
-    height: 50px;
-    background-color: #01C38E;
-
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-#navcontainer { /*Add to main styles*/
-    width: 33%;
-    display: flex;
-    justify-content: space-around;
-
-}
-
 #profilecontainer{
     display: flex;
     justify-content: flex-start;
