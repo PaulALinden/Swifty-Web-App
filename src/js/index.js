@@ -17,6 +17,8 @@ logInButton.addEventListener('click', ev => {
 });
 
 async function sendCredentials(username, password) {
+   const apiUrl = `http://${config.BASE_URL}:3000/api/users/loginUser`
+   
   //Check inputs... Needs css for a more user friendly approach.
   if (!username) {
     usernameInput.classList.add('error');
@@ -43,8 +45,6 @@ async function sendCredentials(username, password) {
     passwordInput.classList.remove('error');
     removeErrorMessage('password');
   }
-
-  const apiUrl = `http://${config.BASE_URL}:3000/api/users/loginUser`
 
   const postData = {
     username: username.toString().toLowerCase(),
