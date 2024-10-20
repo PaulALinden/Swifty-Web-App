@@ -5,7 +5,8 @@ body {
   background-image: url("../../img/mesh-gradient1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   margin: 0;
 }
 
