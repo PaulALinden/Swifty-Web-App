@@ -6,6 +6,7 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 
     position: fixed;
     inset: 150px 45px 0;
@@ -13,8 +14,7 @@
 }
 
 .cartitem{
-    border-bottom: 2px solid black;
-
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,9 +26,16 @@
     align-self: flex-end;
 }
 
-.removebutton{
-    background-color: rgb(206, 2, 2);
-    height: 40px;
+button{
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+}
+
+.trashbin{
+    height: 20px;
+    cursor: pointer;
 }
 
 .item{
@@ -40,4 +47,19 @@
     justify-content: space-between;
     align-items: center;
     width: 60px;
+}
+
+.quantity p{
+    border: 1px solid rgb(105, 105, 105);
+    padding: 8px;
+}
+
+.plus{
+    height: 12px;
+    cursor: pointer;
+}
+
+.minus{
+    height: 12px;
+    cursor: pointer;
 }
