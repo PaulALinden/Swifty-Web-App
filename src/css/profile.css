@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #01C38E; /*Change later if needed*/
+    background-color: #01C38E;
+    /*Change later if needed*/
     background-image: url("../../img/mesh-gradient1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -8,7 +9,7 @@ body {
     margin: 0;
 }
 
-#profilecontainer{
+#profilecontainer {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -21,9 +22,16 @@ body {
     margin: 5px;
     width: 50%;
     border-radius: 35px;
-    display: flex;
-    flex-direction: column;
     padding: 30px;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     background-color: rgb(255, 255, 255);
+}
+
+.pen {
+    height: 20px;
+    cursor: pointer;
 }
