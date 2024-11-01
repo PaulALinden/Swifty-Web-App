@@ -10,11 +10,13 @@
   "license": "",
   "author": "",
   "scripts": {
-    "start": "parcel --port 1234 --open",
-    "build": "parcel build"
+    "start": "parcel ./src/index.html --port 1234 --open",
+    "build": "parcel build",
+    "clean": "rimraf ./dist ./node_modules ./.parcel-cache"
   },
   "devDependencies": {
-    "parcel": "latest"
+    "parcel": "latest",
+    "rimraf": "^6.0.1"
   },
   "dependencies": {
     "dompurify": "^3.1.7"

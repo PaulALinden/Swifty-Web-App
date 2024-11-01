@@ -29,7 +29,7 @@ function validateInput(input, type) {
 }
 
 function sanitizeInput(input) {
-    console.log(DOMPurify.sanitize(input));
+    //console.log(DOMPurify.sanitize(input));
     return DOMPurify.sanitize(input);
 }
 

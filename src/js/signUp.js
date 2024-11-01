@@ -34,7 +34,7 @@ signUpButton.addEventListener("click", ev => {
 
 async function createAccount(username, email, password, firstName, lastName, birthdate) {
 
-  const apiUrl = `http://${config.BASE_URL}:3000/api/users/register/individual`;
+  const apiUrl = `http://${config.API_URL}:3000/api/users/register/individual`;
 
   //Check inputs... Needs css for a more user friendly approach.
   if (!username) {
@@ -131,7 +131,7 @@ async function createAccount(username, email, password, firstName, lastName, bir
     });
 
     if (response.status === 201) {
-      window.location.href = '../../index.html';
+      window.location.href = '../index.html';
     } else {
       throw new Error("Something went wrong, try again later.")
     }
