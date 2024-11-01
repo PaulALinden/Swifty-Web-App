@@ -12,11 +12,10 @@ logInButton.addEventListener('click', ev => {
   const usernameValue = sanitizeInput(usernameInput.value);
   const passwordValue = sanitizeInput(passwordInput.value);
 
-  sendCredentials(usernameValue, passwordValue);
-
+  logIn(usernameValue, passwordValue);
 });
 
-async function sendCredentials(username, password) {
+async function logIn(username, password) {
    const apiUrl = `http://${config.BASE_URL}:3000/api/users/loginUser`
    
   //Check inputs... Needs css for a more user friendly approach.
@@ -37,11 +36,11 @@ async function sendCredentials(username, password) {
     passwordInput.classList.add('error');
     insertErrorMessage('Please enter a password.', 'password')
     return;
-  } else if (password.length < 8) {
+  } /*else if (password.length < 8) {
     passwordInput.classList.add('error');
     insertErrorMessage('Password must be at least 8 characters long.','password')
     return;
-  }else{
+  }*/else{
     passwordInput.classList.remove('error');
     removeErrorMessage('password');
   }
@@ -64,14 +63,24 @@ async function sendCredentials(username, password) {
     if (!response.ok) {
       console.log('Network response was not ok ' + response.statusText);
       console.log(response)
+      alert("Wrong username or password")
     }
 
     const data = await response.json();
     console.log('Success:', data);
 
+    //Add auth logic -------------
+    if(data){
+      localStorage.setItem("user", JSON.stringify(data));
+      console.log("Redirecting")
+      window.location.href = "/home.html";
+    }else{
+      throw new Error("Something went please try again");
+    }
 
   } catch (error) {
     console.error('Error:', error);
+    alert(error)
   }
 }
 

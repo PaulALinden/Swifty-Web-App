@@ -1,5 +1,5 @@
 import config from './config.js';
-import { validateInput, sanitizeInput, insertErrorMessage, removeErrorMessage} from './assets.js';
+import { validateInput, sanitizeInput, insertErrorMessage, removeErrorMessage } from './assets.js';
 
 //Create account
 const signUpButton = document.getElementById("signup")
@@ -30,101 +30,97 @@ signUpButton.addEventListener("click", ev => {
     lastNameValue,
     birthdateValue
   );
-
-  console.log("Click")
 });
 
 async function createAccount(username, email, password, firstName, lastName, birthdate) {
 
-  const apiUrl = `https://${config.BASE_URL}:3000/api/users/register/individual`;
+  const apiUrl = `http://${config.BASE_URL}:3000/api/users/register/individual`;
 
   //Check inputs... Needs css for a more user friendly approach.
   if (!username) {
     newUsernameInput.classList.add("error");
-    insertErrorMessage('Please enter a username','username');
+    insertErrorMessage('Please enter a username', 'username');
     return;
   } else if (!validateInput(username, "lettersAndNumbers")) {
     newUsernameInput.classList.add("error");
-    insertErrorMessage('Username can only contain letters and numbers','username');
+    insertErrorMessage('Username can only contain letters and numbers', 'username');
     return;
-  } else{
+  } else {
     newUsernameInput.classList.remove("error");
     removeErrorMessage('username');
   }
 
   if (!email) {
     newEmailInput.classList.add("error");
-    insertErrorMessage('Please enter a email.','email');
+    insertErrorMessage('Please enter a email.', 'email');
     return;
   } else if (!validateInput(email, "email")) {
     newEmailInput.classList.add("error");
-    insertErrorMessage('Please type a valid email format.','email');
+    insertErrorMessage('Please type a valid email format.', 'email');
     return;
-  } else{
+  } else {
     newEmailInput.classList.remove("error");
     removeErrorMessage('email');
   }
 
   if (!password) {
     newPasswordInput.classList.add("error");
-    insertErrorMessage('Please enter a password.','password');
+    insertErrorMessage('Please enter a password.', 'password');
     return;
   } else if (password.length < 8) {
     newPasswordInput.classList.add("error");
-    insertErrorMessage('Password must be at least 8 characters long.','password');
+    insertErrorMessage('Password must be at least 8 characters long.', 'password');
     return;
-  } else{
+  } else {
     newPasswordInput.classList.remove("error");
     removeErrorMessage('password');
   }
 
   if (!firstName) {
     newFirstNameInput.classList.add("error");
-    insertErrorMessage('Please enter a first name.','firstname');
+    insertErrorMessage('Please enter a first name.', 'firstname');
     return;
   } else if (!validateInput(firstName, "letters")) {
     newFirstNameInput.classList.add("error");
-    insertErrorMessage('First name can only contain letters.','firstname');
+    insertErrorMessage('First name can only contain letters.', 'firstname');
     return;
-  } else{
+  } else {
     newFirstNameInput.classList.remove("error");
     removeErrorMessage('firstname');
   }
 
   if (!lastName) {
     newLastNameInput.classList.add("error");
-    insertErrorMessage('Please enter a last name.','lastname');
+    insertErrorMessage('Please enter a last name.', 'lastname');
     return;
   } else if (!validateInput(lastName, "letters")) {
     newLastNameInput.classList.add("error");
-    insertErrorMessage('Last name can only contain letters.','lastname');
+    insertErrorMessage('Last name can only contain letters.', 'lastname');
     return;
-  } else{
+  } else {
     newLastNameInput.classList.remove("error");
     removeErrorMessage('lastname');
   }
 
   if (!validateInput(birthdate, "birthdate")) {
     newBirthdateInput.classList.add("error");
-    insertErrorMessage('Please enter a valid birthdate (YYYY-MM-DD).','birthdate');
+    insertErrorMessage('Please enter a valid birthdate (YYYY-MM-DD).', 'birthdate');
     return;
-  } else{
+  } else {
     newBirthdateInput.classList.remove("error");
     removeErrorMessage('birthdate');
   }
-  
+
 
   const postData = {
-    username: username.toString().toLowerCase(),
     email: email.toString().toLowerCase(),
-    password: password.toString().toLowerCase(),
+    username: username.toString().toLowerCase(),
     firstName: firstName.toString().toLowerCase(),
     lastName: lastName.toString().toLowerCase(),
     birthdate: birthdate.toString().toLowerCase(),
+    password: password.toString().toLowerCase(),
   };
 
-  console.log("Sending to server");
-  console.log(postData);
   try {
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -134,21 +130,15 @@ async function createAccount(username, email, password, firstName, lastName, bir
       body: JSON.stringify(postData)
     });
 
-    if (!response.ok) {
-      console.log('Network response was not ok ' + response.statusText);
-      console.log(response)
+    if (response.status === 201) {
+      window.location.href = '../../index.html';
+    } else {
+      throw new Error("Something went wrong, try again later.")
     }
 
-    const data = await response.json();
-    console.log('Success:', data);
 
   } catch (error) {
-
     alert(`Error: ${error.message || 'Registration failed. Please try again.'}`);
     return;
-  } finally {
-
-    console.log('Redirecting')
-    window.location.href = '../../index.html';
   }
 };
