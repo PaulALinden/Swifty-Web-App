@@ -3,7 +3,7 @@ import config from '../js/config';
 const companyList = document.getElementById('companylist');
 
 async function getCompanyData() {
-    const apiUrl = `http://${config.BASE_URL}:3000/api/firebase/data?path=companies`
+    const apiUrl = `http://${config.API_URL}:3000/api/firebase/data?path=companies`
 
     try {
         const response = await fetch(apiUrl, {
@@ -28,10 +28,10 @@ async function getCompanyData() {
                 let companyDiv = document.createElement('div');
                 companyDiv.className = 'company';
                 companyList.append(companyDiv);
- 
+
                 let image = document.createElement('img');
                 image.src = companyInfo.url;
- 
+
                 companyDiv.append(image);
             });
         }
@@ -40,4 +40,18 @@ async function getCompanyData() {
     }
 }
 
-getCompanyData();
+function getUser() {
+    let item = JSON.parse(localStorage.getItem("user"));
+    console.log(user);
+};
+
+//getUser();
+/*only timeout while testing*/
+setTimeout(() => {
+    document.querySelectorAll('.loader').forEach(e => e.classList.replace('loader', 'hideloader'))
+    console.log("this is the first message");
+    getCompanyData();
+}, 5000);
+
+
+

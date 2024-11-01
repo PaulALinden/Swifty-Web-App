@@ -73,7 +73,7 @@ async function logIn(username, password) {
     if (data) {
       localStorage.setItem("user", JSON.stringify(data));
       console.log("Redirecting")
-      window.location.href = "home.html";
+      window.location.href = "html/home.html";
     } else {
       throw new Error("Something went please try again");
     }

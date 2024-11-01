@@ -131,7 +131,7 @@ async function createAccount(username, email, password, firstName, lastName, bir
     });
 
     if (response.status === 201) {
-      window.location.href = '../index.html';
+      window.location.href = '/index.html';
     } else {
       throw new Error("Something went wrong, try again later.")
     }
