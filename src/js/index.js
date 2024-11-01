@@ -16,8 +16,8 @@ logInButton.addEventListener('click', ev => {
 });
 
 async function logIn(username, password) {
-   const apiUrl = `http://${config.BASE_URL}:3000/api/users/loginUser`
-   
+  const apiUrl = `http://${config.API_URL}:3000/api/users/loginUser`
+
   //Check inputs... Needs css for a more user friendly approach.
   if (!username) {
     usernameInput.classList.add('error');
@@ -27,7 +27,7 @@ async function logIn(username, password) {
     usernameInput.classList.add('error');
     insertErrorMessage('Username can only contain letters and numbers.', 'username');
     return;
-  }else{
+  } else {
     usernameInput.classList.remove('error');
     removeErrorMessage('username');
   }
@@ -40,7 +40,7 @@ async function logIn(username, password) {
     passwordInput.classList.add('error');
     insertErrorMessage('Password must be at least 8 characters long.','password')
     return;
-  }*/else{
+  }*/else {
     passwordInput.classList.remove('error');
     removeErrorMessage('password');
   }
@@ -70,11 +70,11 @@ async function logIn(username, password) {
     console.log('Success:', data);
 
     //Add auth logic -------------
-    if(data){
+    if (data) {
       localStorage.setItem("user", JSON.stringify(data));
       console.log("Redirecting")
-      window.location.href = "/home.html";
-    }else{
+      window.location.href = "home.html";
+    } else {
       throw new Error("Something went please try again");
     }
 

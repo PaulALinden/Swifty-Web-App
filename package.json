@@ -10,7 +10,7 @@
   "license": "",
   "author": "",
   "scripts": {
-    "start": "parcel ./src/index.html --port 1234 --open",
+    "start": "parcel --port 1234 --open",
     "build": "parcel build",
     "clean": "rimraf ./dist ./node_modules ./.parcel-cache"
   },
