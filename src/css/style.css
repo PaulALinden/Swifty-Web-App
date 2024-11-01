@@ -16,11 +16,11 @@ nav {
   right: 0;
   left: 0;
   width: 100vw;
-  height: 50px;
+  height: 60px;
   background-color: #01C38E;
 
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -28,8 +28,18 @@ nav {
   width: 240px;
   display: flex;
   justify-content: space-around;
-
+  height: 100%;
+  align-items: center;
 }
+
+#navcontainer2 {
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  align-items: center;
+}
+
 
 h1 {
   font-size: 24px;
@@ -42,7 +52,10 @@ form {
   flex-direction: column;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="date"]{
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"] {
   padding: 10px;
   margin-top: 10px;
   border: 2px solid #ccc;
@@ -51,7 +64,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="dat
   width: 250px;
 }
 
-input[type="date"]{
+input[type="date"] {
   color: #747474;
   width: 80%;
 }
@@ -89,7 +102,7 @@ input[type="submit"]:hover {
   text-decoration: underline;
 }
 
-.anchorbutton{
+.anchorbutton {
   margin-top: 15px;
   padding: 10px;
   border: 2px solid #01C38E;
@@ -99,7 +112,7 @@ input[type="submit"]:hover {
   cursor: pointer;
 }
 
-.anchorbutton a{
+.anchorbutton a {
   padding: 10px;
   color: #1A1E29;
   text-decoration: none;
@@ -107,25 +120,118 @@ input[type="submit"]:hover {
   font-size: smaller;
 }
 
-.anchorbutton:hover{
+.anchorbutton:hover {
   border: 2px solid #01C38E;
   background-color: #1A1E29;
 }
 
-.anchorbutton:hover a{
+.anchorbutton:hover a {
   color: #01C38E;
+}
+
+#navcontainer a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+}
+
+#navcontainer2 a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+}
+
+#navcontainer a p{
+  top: 30px;
+  font-size: 10px;
+  color: #1A1E29;
+  font-weight:900;
+  position: absolute;
+}
+
+#navcontainer2 a p{
+  top: 30px;
+  font-size: 10px;
+  color: #1A1E29;
+  font-weight:900;
+  position: absolute;
 }
 
 input[type="text"].error,
 input[type="password"].error,
 input[type="email"].error,
 input[type="date"].error {
-    border: 2px solid red; /* Use !important if necessary */
+  border: 2px solid red;
+  /* Use !important if necessary */
 }
 
 .error-message {
   color: red;
-  font-size: 0.7em; 
+  font-size: 0.7em;
   margin-top: 1px;
   height: 20px;
 }
+
+.loader {
+  width: 300px;
+  height: 215px;
+  display: block;
+  margin: auto;
+  position: relative;
+  background: #FFF;
+  box-sizing: border-box;
+}
+.loader::after {
+  content: '';
+  width: calc(100% - 30px);
+  height: calc(100% - 15px);
+  top: 15px;
+  left: 15px;
+  position: absolute;
+  background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 50%, transparent 100%),
+   linear-gradient(#DDD 100px, transparent 0),
+   linear-gradient(#DDD 16px, transparent 0),
+   linear-gradient(#DDD 50px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 75px 175px, 100% 100px, 100% 16px, 100% 30px;
+  background-position: -185px 0, center 0, center 115px, center 142px;
+  box-sizing: border-box;
+  animation: animloader 1s linear infinite;
+}
+
+@keyframes animloader {
+  to {
+    background-position: 185px 0, center 0, center 115px, center 142px;
+  }
+}
+
+/*Loader for lists*/
+.hideloader{
+  display: none;
+}
+
+.loadinglist{
+  background-color: #fff;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  position: fixed;
+  inset: 150px 45px 0;
+  overflow-y: scroll;
+  justify-content: center;
+}
+
+/*
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_grey">#979696</color>
+    <color name="mid_grey">#555555</color>
+    <color name="light_green">#01C38E</color>
+    <color name="dark_blue">#1A1E29</color>
+    <color name="error_color">#FFFF0000</color>
+*/

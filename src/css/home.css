@@ -1,12 +1,10 @@
 #companylist {
+    background-color: #fff;
     border-top-right-radius: 35px;
     border-top-left-radius: 35px;
-    background-color: rgb(255, 255, 255);
-
     display: flex;
     align-items: center;
     flex-direction: column;
-
     position: fixed;
     inset: 150px 45px 0;
     overflow-y: scroll;
@@ -40,7 +38,7 @@
     }
 
     .company {
-        width:auto;
+        width: auto;
     }
 }
 
